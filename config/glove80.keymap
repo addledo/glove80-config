@@ -301,13 +301,14 @@
 #define POS_RH_C5R6 78
 #define POS_RH_C6R6 79
 
+&lt {
+    quick-tap-ms = <200>;
+    flavor = "balanced";
+};
 
 /* Custom Defined Behaviors */
 / {
-  &lt {
-      quick-tap-ms = <200>;
-      flavor = "balanced";
-  };
+ 
 };
 
 /* Generated input processors */
