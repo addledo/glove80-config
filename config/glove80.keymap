@@ -427,7 +427,7 @@
 //    ├──────┼─────────────┼─────────────┼─────────────┼──────┼─────────────┤                                                ├─────────────┼─────┼─────────────┼─────────────┼─────────────┼─────┤
 //    │      │      #      │      !      │      `      │  %   │      ?      │                                                │      &      │  +  │      {      │      }      │      "      │     │
 //    ├──────┼─────────────┼─────────────┼─────────────┼──────┼─────────────┤                                                ├─────────────┼─────┼─────────────┼─────────────┼─────────────┼─────┤
-//    │      │ &hml lalt ^ │ &hml lctl = │ &hml lsft _ │  $   │ &hml lgui * │                                                │ &hmr rgui ~ │  -  │ &hmr rsft ) │ &hmr rctl ) │ &hmr ralt ' │     │
+//    │      │ &hml lalt ^ │ &hml lctl = │ &hml lsft _ │  $   │ &hml lgui * │                                                │ &hmr rgui ~ │  -  │ &hmr rsft ( │ &hmr rctl ) │ &hmr ralt ' │     │
 //    ├──────┼─────────────┼─────────────┼─────────────┼──────┼─────────────┤   ┌─────┬──────┬─────┐   ┌─────┬─────┬─────┐   ├─────────────┼─────┼─────────────┼─────────────┼─────────────┼─────┤
 //    │      │      <      │      |      │      -      │  >   │             │   │     │ iso\ │     │   │     │     │     │   │      @      │  ;  │      [      │      ]      │    iso#     │     │
 //    ├──────┼─────────────┼─────────────┼─────────────┼──────┼─────────────┘   ├─────┼──────┼─────┤   ├─────┼─────┼─────┤   └─────────────┼─────┼─────────────┼─────────────┼─────────────┼─────┤
@@ -436,7 +436,7 @@
   &kp C_BRI_DN   &kp C_BRI_UP      &kp C_PREV         &kp C_NEXT          &kp C_PP                                                                                                                   &none       &none             &none             &none           &none
   &none          &none             &none              &none               &none         &none                                                                                      &none             &none       &none             &none             &none           &none
   &none          &kp HASH          &kp EXCLAMATION    &kp GRAVE           &kp PERCENT   &kp QMARK                                                                                  &kp AMPS          &kp PLUS    &kp LBRC          &kp RBRC          &kp DQT         &none
-  &none          &hml LALT CARET   &hml LCTRL EQUAL   &hml LSHIFT UNDER   &kp DOLLAR    &hml LGUI STAR                                                                             &hmr RGUI TILDE   &kp MINUS   &hmr RSHFT RPAR   &hmr RCTRL RPAR   &hmr RALT SQT   &none
+  &none          &hml LALT CARET   &hml LCTRL EQUAL   &hml LSHIFT UNDER   &kp DOLLAR    &hml LGUI STAR                                                                             &hmr RGUI TILDE   &kp MINUS   &hmr RSHFT LPAR   &hmr RCTRL RPAR   &hmr RALT SQT   &none
   &none          &kp LT            &kp PIPE           &kp MINUS           &kp GT        &none                &none      &kp NUBS   &none       &none   &none       &none           &kp AT            &kp SEMI    &kp LBKT          &kp RBKT          &kp NUHS        &none
   &none          &none             &none              &none               &none                              &kp FSLH   &kp BSLH   &none       &none   &kp SPACE   &kp COLON                         &none       &none             &none             &none           &none
             >;
