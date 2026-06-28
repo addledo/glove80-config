@@ -51,6 +51,7 @@
 #define NAV 4
 #define FUNC 5
 #define LAYER_Magic 6
+#define VIM 7
 
 /* To deal with the situation where there is no Lower layer, to keep &lower happy */
 #ifndef LAYER_Lower
@@ -353,7 +354,7 @@
 //    ├────────────────────────┼─────────────┼─────────────┼─────────────┼───────────┼─────────────┐                                                                                     ┌─────────────┼──────────┼─────────────┼─────────────┼─────────────┼────────────┤
 //    │           =            │      1      │      2      │      3      │     4     │      5      │                                                                                     │      6      │    7     │      8      │      9      │      0      │ to GALLIUM │
 //    ├────────────────────────┼─────────────┼─────────────┼─────────────┼───────────┼─────────────┤                                                                                     ├─────────────┼──────────┼─────────────┼─────────────┼─────────────┼────────────┤
-//    │         capsw          │      Q      │      W      │  lt NUM E   │     R     │      T      │                                                                                     │      Y      │    U     │  lt NUM I   │      O      │      P      │     \      │
+//    │         capsw          │      Q      │      W      │  lt NUM E   │ lt VIM R  │      T      │                                                                                     │      Y      │ lt VIM U │  lt NUM I   │      O      │      P      │     \      │
 //    ├────────────────────────┼─────────────┼─────────────┼─────────────┼───────────┼─────────────┤                                                                                     ├─────────────┼──────────┼─────────────┼─────────────┼─────────────┼────────────┤
 //    │          tab           │ &hml lalt A │ &hml lctl S │ &hml lsft D │ lt NAV F  │ &hml lgui G │                                                                                     │ &hmr rgui H │ lt NAV J │ &hmr rsft K │ &hmr rctl L │ &hmr ralt ; │     '      │
 //    ├────────────────────────┼─────────────┼─────────────┼─────────────┼───────────┼─────────────┤   ┌─────────────┬────────────┬─────────────┐   ┌──────┬────────────┬────────────┐   ├─────────────┼──────────┼─────────────┼─────────────┼─────────────┼────────────┤
@@ -363,7 +364,7 @@
 //    └────────────────────────┴─────────────┴─────────────┴─────────────┴───────────┘                 └─────────────┴────────────┴─────────────┘   └──────┴────────────┴────────────┘                 └──────────┴─────────────┴─────────────┴─────────────┴────────────┘
   &kp F1                 &kp F2        &kp F3         &kp F4         &kp F5                                                                                                                                    &kp F6      &kp F7         &kp F8         &kp F9           &kp F10
   &kp EQUAL              &kp N1        &kp N2         &kp N3         &kp N4       &kp N5                                                                                                         &kp N6        &kp N7      &kp N8         &kp N9         &kp N0           &to GALLIUM
-  &caps_word             &kp Q         &kp W          &lt NUM E      &kp R        &kp T                                                                                                          &kp Y         &kp U       &lt NUM I      &kp O          &kp P            &kp BSLH
+  &caps_word             &kp Q         &kp W          &lt NUM E      &lt VIM R    &kp T                                                                                                          &kp Y         &lt VIM U   &lt NUM I      &kp O          &kp P            &kp BSLH
   &kp TAB                &hml LALT A   &hml LCTRL S   &hml LSHFT D   &lt NAV F    &hml LGUI G                                                                                                    &hmr RGUI H   &lt NAV J   &hmr RSHFT K   &hmr RCTRL L   &hmr RALT SEMI   &kp SQT
   &kp DEL                &kp Z         &kp X          &kp C          &lt FUNC V   &kp B             &kp LSHFT      &kp LCTRL     &kp LGUI           &kp RGUI   &kp RCTRL     &kp RSHFT           &kp N         &kp M       &kp COMMA      &kp DOT        &kp TAB          &none
   &magic LAYER_Magic 0   &none         &none          &none          &none                          &lt SYM BSPC   &lt NUM ESC   &lt LALT DEL       &kp RALT   &lt NUM RET   &lt SYM SPACE                     &kp LEFT    &kp DOWN       &kp UP         &kp RIGHT        &kp PSCRN
@@ -379,7 +380,7 @@
 //    ├────────────────────────┼─────────────┼─────────────┼─────────────┼───────────┼─────────────┐                                                                                     ┌─────────────┼───────────┼─────────────┼─────────────┼─────────────┼──────────┤
 //    │           =            │      1      │      2      │      3      │     4     │      5      │                                                                                     │      6      │     7     │      8      │      9      │      0      │ to QWERT │
 //    ├────────────────────────┼─────────────┼─────────────┼─────────────┼───────────┼─────────────┤                                                                                     ├─────────────┼───────────┼─────────────┼─────────────┼─────────────┼──────────┤
-//    │         capsw          │      B      │      L      │  lt NUM D   │     C     │      V      │                                                                                     │      J      │     Y     │  lt NUM O   │      U      │      '      │          │
+//    │         capsw          │      B      │      L      │  lt NUM D   │ lt VIM C  │      V      │                                                                                     │      J      │ lt VIM Y  │  lt NUM O   │      U      │      '      │          │
 //    ├────────────────────────┼─────────────┼─────────────┼─────────────┼───────────┼─────────────┤                                                                                     ├─────────────┼───────────┼─────────────┼─────────────┼─────────────┼──────────┤
 //    │          tab           │ &hml lalt N │ &hml lctl R │ &hml lsft T │ lt NAV S  │ &hml lgui G │                                                                                     │ &hmr rgui P │ lt NAV H  │ &hmr rsft A │ &hmr rctl E │ &hmr ralt I │    '     │
 //    ├────────────────────────┼─────────────┼─────────────┼─────────────┼───────────┼─────────────┤   ┌─────────────┬────────────┬─────────────┐   ┌──────┬────────────┬────────────┐   ├─────────────┼───────────┼─────────────┼─────────────┼─────────────┼──────────┤
@@ -389,7 +390,7 @@
 //    └────────────────────────┴─────────────┴─────────────┴─────────────┴───────────┘                 └─────────────┴────────────┴─────────────┘   └──────┴────────────┴────────────┘                 └───────────┴─────────────┴─────────────┴─────────────┴──────────┘
   &kp F1                 &kp F2        &kp F3         &kp F4         &kp F5                                                                                                                                    &kp F6       &kp F7         &kp F8         &kp F9        &kp F10
   &kp EQUAL              &kp N1        &kp N2         &kp N3         &kp N4       &kp N5                                                                                                         &kp N6        &kp N7       &kp N8         &kp N9         &kp N0        &to QWERT
-  &caps_word             &kp B         &kp L          &lt NUM D      &kp C        &kp V                                                                                                          &kp J         &kp Y        &lt NUM O      &kp U          &kp SQT       &none
+  &caps_word             &kp B         &kp L          &lt NUM D      &lt VIM C    &kp V                                                                                                          &kp J         &lt VIM Y    &lt NUM O      &kp U          &kp SQT       &none
   &kp TAB                &hml LALT N   &hml LCTRL R   &hml LSHFT T   &lt NAV S    &hml LGUI G                                                                                                    &hmr RGUI P   &lt NAV H    &hmr RSHFT A   &hmr RCTRL E   &hmr RALT I   &kp SQT
   &kp DEL                &kp X         &kp Q          &kp M          &lt FUNC W   &kp Z             &kp LSHFT      &kp LCTRL     &kp LGUI           &kp RGUI   &kp RCTRL     &kp RSHFT           &kp K         &lt FUNC F   &kp COMMA      &kp DOT        &kp FSLH      &none
   &magic LAYER_Magic 0   &none         &none          &none          &none                          &lt SYM BSPC   &lt NUM ESC   &lt LALT DEL       &kp RALT   &lt NUM RET   &lt SYM SPACE                     &kp LEFT     &kp DOWN       &kp UP         &kp RIGHT     &kp PSCRN
@@ -529,6 +530,17 @@
   &bootloader   &rgb_ug RGB_SPD   &rgb_ug RGB_SAD   &rgb_ug RGB_HUD   &rgb_ug RGB_BRD   &rgb_ug RGB_EFF                                                                                &none   &none   &none   &none   &none   &bootloader
   &sys_reset    &none             &none             &none             &none             &none                 &bt_2   &bt_3   &none              &none   &none       &none             &none   &none   &none   &none   &none   &sys_reset
   &none         &none             &none             &none             &none                                   &bt_0   &bt_1   &out OUT_USB       &none   &to QWERT   &to GALLIUM               &none   &none   &none   &none   &none
+            >;
+        };
+
+        layer_Vim {
+            bindings = <
+  &none   &none   &none   &none   &none
+  &none   &none   &none   &none   &none   &none                                                                                                         &none   &none   &none   &none   &none   &none
+  &none   &none   &none   &none   &none   &none                                                                                                         &none   &none   &none   &none   &none   &none
+  &none   &none   &none   &none   &none   &none                                                                                                         &none   &none   &none   &none   &none   &none
+  &none   &none   &none   &none   &none   &none   &none   &none   &none       &none   &none   &none       &none   &none   &none   &none   &none   &none
+  &none   &none   &none   &none   &none           &none   &none   &none       &none   &none   &none               &none   &none   &none   &none   &none
             >;
         };
 
