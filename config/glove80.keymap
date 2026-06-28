@@ -52,6 +52,8 @@
 #define FUNC 5
 #define LAYER_Magic 6
 #define VIM 7
+#define MAC_QWERT 8
+#define MAC_VIM 9
 
 /* To deal with the situation where there is no Lower layer, to keep &lower happy */
 #ifndef LAYER_Lower
@@ -396,6 +398,63 @@
     };
 };
 
+/* Mac vim layer macros and behaviors */
+/ {
+    macros {
+        vim_mac_caret: vim_mac_caret {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LEFT)>;
+        };
+        vim_mac_dollar: vim_mac_dollar {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(RIGHT)>;
+        };
+        vim_mac_dd: vim_mac_dd {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LEFT) &kp LS(DOWN) &kp DEL>;
+        };
+        vim_mac_ss: vim_mac_ss {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LEFT) &kp LS(LG(RIGHT)) &kp DEL>;
+        };
+        vim_mac_to_end: vim_mac_to_end {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(LG(RIGHT)) &kp DEL>;
+        };
+        vim_mac_o: vim_mac_o {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(RIGHT) &kp RET>;
+        };
+        vim_mac_above: vim_mac_above {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LEFT) &kp RET &kp UP>;
+        };
+    };
+    behaviors {
+        vim_mac_s_ht: vim_mac_s_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&vim_mac_to_end>, <&vim_mac_ss>;
+        };
+        vim_mac_o_ht: vim_mac_o_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&vim_mac_above>, <&vim_mac_o>;
+        };
+    };
+};
+
 /* Automatically generated combos definitions */
 
 
@@ -568,25 +627,25 @@
 
         layer_Magic {
             bindings = <
-//    ┌────────────┬─────────┬─────────┬─────────┬─────────┐                                                                                    ┌─────┬─────┬─────┬─────┬────────────┐
-//    │   bt_clr   │         │         │         │         │                                                                                    │     │     │     │     │ bt_clr_ALL │
-//    ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┐                                                                    ┌─────┼─────┼─────┼─────┼─────┼────────────┤
-//    │            │         │         │         │         │         │                                                                    │     │     │     │     │     │            │
-//    ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┤                                                                    ├─────┼─────┼─────┼─────┼─────┼────────────┤
-//    │            │ ug_ sp+ │ ug_ sa+ │ ug_ hu+ │ ug_ br+ │ ug_ tog │                                                                    │     │     │     │     │     │            │
-//    ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┤                                                                    ├─────┼─────┼─────┼─────┼─────┼────────────┤
-//    │    boot    │ ug_ sp- │ ug_ sa- │ ug_ hu- │ ug_ br- │ ug_ eff │                                                                    │     │     │     │     │     │    boot    │
-//    ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┤   ┌───────┬───────┬──────────┐   ┌─────┬──────────┬────────────┐   ├─────┼─────┼─────┼─────┼─────┼────────────┤
-//    │ &sys_reset │         │         │         │         │         │   │ &bt_2 │ &bt_3 │          │   │     │          │            │   │     │     │     │     │     │ &sys_reset │
-//    ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┘   ├───────┼───────┼──────────┤   ├─────┼──────────┼────────────┤   └─────┼─────┼─────┼─────┼─────┼────────────┤
-//    │            │         │         │         │         │             │ &bt_0 │ &bt_1 │ out_ usb │   │     │ to QWERT │ to GALLIUM │         │     │     │     │     │            │
-//    └────────────┴─────────┴─────────┴─────────┴─────────┘             └───────┴───────┴──────────┘   └─────┴──────────┴────────────┘         └─────┴─────┴─────┴─────┴────────────┘
-  &bt BT_CLR    &none             &none             &none             &none                                                                                                                    &none   &none   &none   &none   &bt BT_CLR_ALL
-  &none         &none             &none             &none             &none             &none                                                                                          &none   &none   &none   &none   &none   &none
-  &none         &rgb_ug RGB_SPI   &rgb_ug RGB_SAI   &rgb_ug RGB_HUI   &rgb_ug RGB_BRI   &rgb_ug RGB_TOG                                                                                &none   &none   &none   &none   &none   &none
-  &bootloader   &rgb_ug RGB_SPD   &rgb_ug RGB_SAD   &rgb_ug RGB_HUD   &rgb_ug RGB_BRD   &rgb_ug RGB_EFF                                                                                &none   &none   &none   &none   &none   &bootloader
-  &sys_reset    &none             &none             &none             &none             &none                 &bt_2   &bt_3   &none              &none   &none       &none             &none   &none   &none   &none   &none   &sys_reset
-  &none         &none             &none             &none             &none                                   &bt_0   &bt_1   &out OUT_USB       &none   &to QWERT   &to GALLIUM               &none   &none   &none   &none   &none
+//    ┌────────────┬─────────┬─────────┬─────────┬─────────┐                                                                                        ┌─────┬─────┬─────┬─────┬────────────┐
+//    │   bt_clr   │         │         │         │         │                                                                                        │     │     │     │     │ bt_clr_ALL │
+//    ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┐                                                                        ┌─────┼─────┼─────┼─────┼─────┼────────────┤
+//    │            │         │         │         │         │         │                                                                        │     │     │     │     │     │            │
+//    ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┤                                                                        ├─────┼─────┼─────┼─────┼─────┼────────────┤
+//    │            │ ug_ sp+ │ ug_ sa+ │ ug_ hu+ │ ug_ br+ │ ug_ tog │                                                                        │     │     │     │     │     │            │
+//    ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┤                                                                        ├─────┼─────┼─────┼─────┼─────┼────────────┤
+//    │    boot    │ ug_ sp- │ ug_ sa- │ ug_ hu- │ ug_ br- │ ug_ eff │                                                                        │     │     │     │     │     │    boot    │
+//    ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┤   ┌───────┬───────┬──────────┐   ┌─────┬──────────────┬────────────┐   ├─────┼─────┼─────┼─────┼─────┼────────────┤
+//    │ &sys_reset │         │         │         │         │         │   │ &bt_2 │ &bt_3 │          │   │     │ to MAC_QWERT │            │   │     │     │     │     │     │ &sys_reset │
+//    ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┘   ├───────┼───────┼──────────┤   ├─────┼──────────────┼────────────┤   └─────┼─────┼─────┼─────┼─────┼────────────┤
+//    │            │         │         │         │         │             │ &bt_0 │ &bt_1 │ out_ usb │   │     │   to QWERT   │ to GALLIUM │         │     │     │     │     │            │
+//    └────────────┴─────────┴─────────┴─────────┴─────────┘             └───────┴───────┴──────────┘   └─────┴──────────────┴────────────┘         └─────┴─────┴─────┴─────┴────────────┘
+  &bt BT_CLR    &none             &none             &none             &none                                                                                                                        &none   &none   &none   &none   &bt BT_CLR_ALL
+  &none         &none             &none             &none             &none             &none                                                                                              &none   &none   &none   &none   &none   &none
+  &none         &rgb_ug RGB_SPI   &rgb_ug RGB_SAI   &rgb_ug RGB_HUI   &rgb_ug RGB_BRI   &rgb_ug RGB_TOG                                                                                    &none   &none   &none   &none   &none   &none
+  &bootloader   &rgb_ug RGB_SPD   &rgb_ug RGB_SAD   &rgb_ug RGB_HUD   &rgb_ug RGB_BRD   &rgb_ug RGB_EFF                                                                                    &none   &none   &none   &none   &none   &bootloader
+  &sys_reset    &none             &none             &none             &none             &none                 &bt_2   &bt_3   &none              &none   &to MAC_QWERT   &none             &none   &none   &none   &none   &none   &sys_reset
+  &none         &none             &none             &none             &none                                   &bt_0   &bt_1   &out OUT_USB       &none   &to QWERT       &to GALLIUM               &none   &none   &none   &none   &none
             >;
         };
 
@@ -611,6 +670,54 @@
   &none   &vim_caret   &vim_s_ht 0 0   &vim_dd   &vim_dollar   &none                                                               &none   &none   &none   &none           &none   &none
   &none   &none        &none           &none     &none         &none       &none   &none   &none       &none   &none   &none       &none   &none   &none   &none           &none   &none
   &none   &none        &none           &none     &none                     &none   &none   &none       &none   &none   &none               &none   &none   &none           &none   &none
+            >;
+        };
+
+        layer_Mac_Qwerty {
+            bindings = <
+//    ┌────────────────────────┬─────────────┬─────────────┬─────────────┬──────────────┐                                                                                                                 ┌──────────────┬─────────────┬─────────────┬─────────────┬────────────┐
+//    │           f1           │     f2      │     f3      │     f4      │      f5      │                                                                                                                 │      f6      │     f7      │     f8      │     f9      │    f10     │
+//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┐                                                                                     ┌─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
+//    │           =            │      1      │      2      │      3      │      4       │      5      │                                                                                     │      6      │      7       │      8      │      9      │      0      │ to GALLIUM │
+//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┤                                                                                     ├─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
+//    │         capsw          │      Q      │      W      │  lt NUM E   │ lt MAC_VIM R │      T      │                                                                                     │      Y      │ lt MAC_VIM U │  lt NUM I   │      O      │      P      │     \      │
+//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┤                                                                                     ├─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
+//    │          tab           │ &hml lalt A │ &hml lctl S │ &hml lsft D │   lt NAV F   │ &hml lgui G │                                                                                     │ &hmr rgui H │   lt NAV J   │ &hmr rsft K │ &hmr rctl L │ &hmr ralt ; │     '      │
+//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┤   ┌─────────────┬────────────┬─────────────┐   ┌──────┬────────────┬────────────┐   ├─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
+//    │          del           │      Z      │      X      │      C      │  lt FUNC V   │      B      │   │    lsft     │    lctl    │    lgui     │   │ rgui │    rctl    │    rsft    │   │      N      │      M       │      ,      │      .      │     tab     │            │
+//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┘   ├─────────────┼────────────┼─────────────┤   ├──────┼────────────┼────────────┤   └─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
+//    │ &magic laltYER_Magic 0 │             │             │             │              │                 │ lt SYM bspc │ lt NUM esc │ lt lalt del │   │ ralt │ lt NUM ent │ lt SYM spc │                 │     left     │    down     │     up      │    rght     │    pscr    │
+//    └────────────────────────┴─────────────┴─────────────┴─────────────┴──────────────┘                 └─────────────┴────────────┴─────────────┘   └──────┴────────────┴────────────┘                 └──────────────┴─────────────┴─────────────┴─────────────┴────────────┘
+  &kp F1                 &kp F2        &kp F3         &kp F4         &kp F5                                                                                                                                       &kp F6          &kp F7         &kp F8         &kp F9           &kp F10
+  &kp EQUAL              &kp N1        &kp N2         &kp N3         &kp N4          &kp N5                                                                                                         &kp N6        &kp N7          &kp N8         &kp N9         &kp N0           &to GALLIUM
+  &caps_word             &kp Q         &kp W          &lt NUM E      &lt MAC_VIM R   &kp T                                                                                                          &kp Y         &lt MAC_VIM U   &lt NUM I      &kp O          &kp P            &kp BSLH
+  &kp TAB                &hml LALT A   &hml LCTRL S   &hml LSHFT D   &lt NAV F       &hml LGUI G                                                                                                    &hmr RGUI H   &lt NAV J       &hmr RSHFT K   &hmr RCTRL L   &hmr RALT SEMI   &kp SQT
+  &kp DEL                &kp Z         &kp X          &kp C          &lt FUNC V      &kp B             &kp LSHFT      &kp LCTRL     &kp LGUI           &kp RGUI   &kp RCTRL     &kp RSHFT           &kp N         &kp M           &kp COMMA      &kp DOT        &kp TAB          &none
+  &magic LAYER_Magic 0   &none         &none          &none          &none                             &lt SYM BSPC   &lt NUM ESC   &lt LALT DEL       &kp RALT   &lt NUM RET   &lt SYM SPACE                     &kp LEFT        &kp DOWN       &kp UP         &kp RIGHT        &kp PSCRN
+            >;
+        };
+
+        layer_Mac_Vim {
+            bindings = <
+//    ┌─────┬────────────────┬───────────────────┬─────────────┬─────────────────┐                                                           ┌─────┬─────┬───────────────────┬─────┬─────┐
+//    │     │                │                   │             │                 │                                                           │     │     │                   │     │     │
+//    ├─────┼────────────────┼───────────────────┼─────────────┼─────────────────┼─────┐                                               ┌─────┼─────┼─────┼───────────────────┼─────┼─────┤
+//    │     │                │                   │             │                 │     │                                               │     │     │     │                   │     │     │
+//    ├─────┼────────────────┼───────────────────┼─────────────┼─────────────────┼─────┤                                               ├─────┼─────┼─────┼───────────────────┼─────┼─────┤
+//    │     │                │                   │             │                 │     │                                               │     │     │     │ &vim_mac_o_ht 0 0 │     │     │
+//    ├─────┼────────────────┼───────────────────┼─────────────┼─────────────────┼─────┤                                               ├─────┼─────┼─────┼───────────────────┼─────┼─────┤
+//    │     │ &vim_mac_caret │ &vim_mac_s_ht 0 0 │ &vim_mac_dd │ &vim_mac_dollar │     │                                               │     │     │     │                   │     │     │
+//    ├─────┼────────────────┼───────────────────┼─────────────┼─────────────────┼─────┤   ┌─────┬─────┬─────┐   ┌─────┬─────┬─────┐   ├─────┼─────┼─────┼───────────────────┼─────┼─────┤
+//    │     │                │                   │             │                 │     │   │     │     │     │   │     │     │     │   │     │     │     │                   │     │     │
+//    ├─────┼────────────────┼───────────────────┼─────────────┼─────────────────┼─────┘   ├─────┼─────┼─────┤   ├─────┼─────┼─────┤   └─────┼─────┼─────┼───────────────────┼─────┼─────┤
+//    │     │                │                   │             │                 │         │     │     │     │   │     │     │     │         │     │     │                   │     │     │
+//    └─────┴────────────────┴───────────────────┴─────────────┴─────────────────┘         └─────┴─────┴─────┘   └─────┴─────┴─────┘         └─────┴─────┴───────────────────┴─────┴─────┘
+  &none   &none            &none               &none         &none                                                                                         &none   &none   &none               &none   &none
+  &none   &none            &none               &none         &none             &none                                                               &none   &none   &none   &none               &none   &none
+  &none   &none            &none               &none         &none             &none                                                               &none   &none   &none   &vim_mac_o_ht 0 0   &none   &none
+  &none   &vim_mac_caret   &vim_mac_s_ht 0 0   &vim_mac_dd   &vim_mac_dollar   &none                                                               &none   &none   &none   &none               &none   &none
+  &none   &none            &none               &none         &none             &none       &none   &none   &none       &none   &none   &none       &none   &none   &none   &none               &none   &none
+  &none   &none            &none               &none         &none                         &none   &none   &none       &none   &none   &none               &none   &none   &none               &none   &none
             >;
         };
 
