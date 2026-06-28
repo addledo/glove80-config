@@ -339,6 +339,63 @@
     };
 };
 
+/* Vim layer macros and behaviors */
+/ {
+    macros {
+        vim_caret: vim_caret {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp HOME>;
+        };
+        vim_dollar: vim_dollar {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp END>;
+        };
+        vim_dd: vim_dd {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp HOME &kp LS(DOWN) &kp DEL>;
+        };
+        vim_ss: vim_ss {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp HOME &kp LS(END) &kp DEL>;
+        };
+        vim_S: vim_S {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(END) &kp DEL>;
+        };
+        vim_o: vim_o {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp END &kp RET>;
+        };
+        vim_O: vim_O {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp HOME &kp RET &kp UP>;
+        };
+    };
+    behaviors {
+        vim_s_ht: vim_s_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&vim_S>, <&vim_ss>;
+        };
+        vim_o_ht: vim_o_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&vim_O>, <&vim_o>;
+        };
+    };
+};
+
 /* Automatically generated combos definitions */
 
 
@@ -535,12 +592,25 @@
 
         layer_Vim {
             bindings = <
-  &none   &none   &none   &none   &none
-  &none   &none   &none   &none   &none   &none                                                                                                         &none   &none   &none   &none   &none   &none
-  &none   &none   &none   &none   &none   &none                                                                                                         &none   &none   &none   &none   &none   &none
-  &none   &none   &none   &none   &none   &none                                                                                                         &none   &none   &none   &none   &none   &none
-  &none   &none   &none   &none   &none   &none   &none   &none   &none       &none   &none   &none       &none   &none   &none   &none   &none   &none
-  &none   &none   &none   &none   &none           &none   &none   &none       &none   &none   &none               &none   &none   &none   &none   &none
+//    ┌─────┬────────────┬───────────────┬─────────┬─────────────┐                                                           ┌─────┬─────┬───────────────┬─────┬─────┐
+//    │     │            │               │         │             │                                                           │     │     │               │     │     │
+//    ├─────┼────────────┼───────────────┼─────────┼─────────────┼─────┐                                               ┌─────┼─────┼─────┼───────────────┼─────┼─────┤
+//    │     │            │               │         │             │     │                                               │     │     │     │               │     │     │
+//    ├─────┼────────────┼───────────────┼─────────┼─────────────┼─────┤                                               ├─────┼─────┼─────┼───────────────┼─────┼─────┤
+//    │     │            │               │         │             │     │                                               │     │     │     │ &vim_o_ht 0 0 │     │     │
+//    ├─────┼────────────┼───────────────┼─────────┼─────────────┼─────┤                                               ├─────┼─────┼─────┼───────────────┼─────┼─────┤
+//    │     │ &vim_caret │ &vim_s_ht 0 0 │ &vim_dd │ &vim_dollar │     │                                               │     │     │     │               │     │     │
+//    ├─────┼────────────┼───────────────┼─────────┼─────────────┼─────┤   ┌─────┬─────┬─────┐   ┌─────┬─────┬─────┐   ├─────┼─────┼─────┼───────────────┼─────┼─────┤
+//    │     │            │               │         │             │     │   │     │     │     │   │     │     │     │   │     │     │     │               │     │     │
+//    ├─────┼────────────┼───────────────┼─────────┼─────────────┼─────┘   ├─────┼─────┼─────┤   ├─────┼─────┼─────┤   └─────┼─────┼─────┼───────────────┼─────┼─────┤
+//    │     │            │               │         │             │         │     │     │     │   │     │     │     │         │     │     │               │     │     │
+//    └─────┴────────────┴───────────────┴─────────┴─────────────┘         └─────┴─────┴─────┘   └─────┴─────┴─────┘         └─────┴─────┴───────────────┴─────┴─────┘
+  &none   &none        &none           &none     &none                                                                                     &none   &none   &none           &none   &none
+  &none   &none        &none           &none     &none         &none                                                               &none   &none   &none   &none           &none   &none
+  &none   &none        &none           &none     &none         &none                                                               &none   &none   &none   &vim_o_ht 0 0   &none   &none
+  &none   &vim_caret   &vim_s_ht 0 0   &vim_dd   &vim_dollar   &none                                                               &none   &none   &none   &none           &none   &none
+  &none   &none        &none           &none     &none         &none       &none   &none   &none       &none   &none   &none       &none   &none   &none   &none           &none   &none
+  &none   &none        &none           &none     &none                     &none   &none   &none       &none   &none   &none               &none   &none   &none           &none   &none
             >;
         };
 
