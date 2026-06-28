@@ -84,6 +84,12 @@
             tapping-term-ms = <200>;
             bindings = <&vim_p_above>, <&vim_p_below>;
         };
+        vim_y_td: vim_y_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LC(C)>, <&vim_yy>;
+        };
     };
 };
 
@@ -172,6 +178,12 @@
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             bindings = <&vim_mac_p_above>, <&vim_mac_p_below>;
+        };
+        vim_mac_y_td: vim_mac_y_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LG(C)>, <&vim_mac_yy>;
         };
     };
 };
