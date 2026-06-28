@@ -362,7 +362,7 @@
             #binding-cells = <0>;
             bindings = <&kp HOME &kp LS(END) &kp DEL>;
         };
-        vim_S: vim_S {
+        vim_to_end: vim_to_end {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LS(END) &kp DEL>;
@@ -372,7 +372,7 @@
             #binding-cells = <0>;
             bindings = <&kp END &kp RET>;
         };
-        vim_O: vim_O {
+        vim_above: vim_above {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp HOME &kp RET &kp UP>;
@@ -384,14 +384,14 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            bindings = <&vim_S>, <&vim_ss>;
+            bindings = <&vim_to_end>, <&vim_ss>;
         };
         vim_o_ht: vim_o_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            bindings = <&vim_O>, <&vim_o>;
+            bindings = <&vim_above>, <&vim_o>;
         };
     };
 };
