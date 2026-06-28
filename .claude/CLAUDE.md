@@ -24,9 +24,9 @@ Row 1 is the most commonly missed — it needs 10 keys, not 5.
 
 # ZMK layer numbering and priority
 
-ZMK checks layers from highest number to lowest. Base layers (QWERT, GALLIUM, MAC_QWERT) must have lower numbers than all overlay layers (SYM, NUM, NAV, FUNC, Magic, VIM, MAC_VIM), otherwise the base layer's explicit bindings shadow the overlay layer and make its keys unreachable.
+ZMK checks layers from highest number to lowest. Base layers (QWERT, GALLIUM, MAC_QWERT) must have lower numbers than all overlay layers (SYM, NUM, NAV, FUNC, Magic, EDIT, MAC_EDIT), otherwise the base layer's explicit bindings shadow the overlay layer and make its keys unreachable.
 
-Current order: QWERT=0, GALLIUM=1, MAC_QWERT=2, SYM=3, NUM=4, NAV=5, FUNC=6, Magic=7, VIM=8, MAC_VIM=9.
+Current order: QWERT=0, GALLIUM=1, MAC_QWERT=2, SYM=3, NUM=4, NAV=5, FUNC=6, Magic=7, EDIT=8, MAC_EDIT=9, MAC_SYM=10.
 
 Any new base layer must be inserted before SYM (currently 3). Any new overlay layer can be appended at the end. The layer order in the keymap block must match the `#define` values.
 
@@ -39,8 +39,8 @@ The ASCII table comments above each layer's bindings are generated automatically
 `Home`/`End` keycodes work correctly in VS Code, terminals, and most IDEs. In macOS native text views (Safari, Mail, Notes, TextEdit), they scroll the document instead of moving the cursor.
 
 Two parallel vim layers exist:
-- `VIM` (layer 7) — uses `Home`/`End`, triggered from QWERTY/Gallium via `lt VIM R` and `lt VIM U`
-- `MAC_VIM` (layer 9) — uses `LG(LEFT)`/`LG(RIGHT)`, triggered from `MAC_QWERT` (layer 8)
+- `EDIT` (layer 7) — uses `Home`/`End`, triggered from QWERTY/Gallium via `lt EDIT R` and `lt EDIT U`
+- `MAC_EDIT` (layer 9) — uses `LG(LEFT)`/`LG(RIGHT)`, triggered from `MAC_QWERT` (layer 8)
 
 `MAC_QWERT` is otherwise identical to QWERTY and is toggled from the Magic layer.
 
