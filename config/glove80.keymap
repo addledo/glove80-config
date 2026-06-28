@@ -36,13 +36,6 @@
         bindings = <&mo layer>, <&to layer>; \
 )
 
-/* Environment and metadata defines */
-#define KB_TYPE_GLOVE_80 1
-#define KB_TYPE_GO_60    2
-
-#define KB_TYPE          KB_TYPE_GLOVE_80
-#define EDITOR_HOST_OS   'M'
-
 /* Automatically generated layer name defines */
 #define QWERT 0
 #define GALLIUM 1
@@ -56,23 +49,10 @@
 #define MAC_SYM 9
 #define MAC_NAV 10
 
-/* To deal with the situation where there is no Lower layer, to keep &lower happy */
-#ifndef LAYER_Lower
-#define LAYER_Lower 0
-#endif
-
 /* Custom Device-tree */
 
 
 /* Input Listeners */
-
-
-/* System behavior and Macros */
-/ {
-    behaviors {
-        ZMK_TD_LAYER(lower, LAYER_Lower)
-    };
-};
 
 / {
     macros {
@@ -311,10 +291,6 @@
 /* Automatically generated behavior definitions */
 / {
     behaviors {
-
-        // Layer tap dance behaviors
-
-        ZMK_TD_LAYER(td_LAYER_Symbol, SYM)
 
         // Right-hand HRMs
         hmr: hmr {
