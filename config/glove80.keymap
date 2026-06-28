@@ -380,6 +380,11 @@
             #binding-cells = <0>;
             bindings = <&kp HOME &kp RET &kp UP>;
         };
+        vim_v: vim_v {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp HOME &kp LS(END)>;
+        };
     };
     behaviors {
         vim_d_td: vim_d_td {
@@ -441,6 +446,11 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LG(LEFT) &kp RET &kp UP>;
+        };
+        vim_mac_v: vim_mac_v {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LEFT) &kp LS(LG(RIGHT))>;
         };
     };
     behaviors {
@@ -700,7 +710,7 @@
   &none   &none        &none       &none       &none         &none                                                               &none   &none   &none   &none           &none   &none
   &none   &none        &none       &none       &none         &none                                                               &none   &none   &none   &vim_o_ht 0 0   &none   &none
   &none   &vim_caret   &vim_s_td   &vim_d_td   &vim_dollar   &none                                                               &none   &none   &none   &none           &none   &none
-  &none   &none        &none       &none       &none         &none       &none   &none   &none       &none   &none   &none       &none   &none   &none   &none           &none   &none
+  &none   &none        &none       &none       &vim_v         &none       &none   &none   &none       &none   &none   &none       &none   &none   &none   &none           &none   &none
   &none   &none        &none       &none       &none                     &none   &none   &none       &none   &none   &none               &none   &none   &none           &none   &none
             >;
         };
@@ -724,7 +734,7 @@
   &none   &none            &none           &none           &none             &none                                                               &none   &none   &none   &none               &none   &none
   &none   &none            &none           &none           &none             &none                                                               &none   &none   &none   &vim_mac_o_ht 0 0   &none   &none
   &none   &vim_mac_caret   &vim_mac_s_td   &vim_mac_d_td   &vim_mac_dollar   &none                                                               &none   &none   &none   &none               &none   &none
-  &none   &none            &none           &none           &none             &none       &none   &none   &none       &none   &none   &none       &none   &none   &none   &none               &none   &none
+  &none   &none            &none           &none           &vim_mac_v             &none       &none   &none   &none       &none   &none   &none       &none   &none   &none   &none               &none   &none
   &none   &none            &none           &none           &none                         &none   &none   &none       &none   &none   &none               &none   &none   &none               &none   &none
             >;
         };
