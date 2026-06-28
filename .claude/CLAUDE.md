@@ -30,6 +30,10 @@ Current order: QWERT=0, GALLIUM=1, MAC_QWERT=2, SYM=3, NUM=4, NAV=5, FUNC=6, Mag
 
 Any new base layer must be inserted before SYM (currently 3). Any new overlay layer can be appended at the end. The layer order in the keymap block must match the `#define` values.
 
+# Keymap comment tables
+
+The ASCII table comments above each layer's bindings are generated automatically. Never edit them manually.
+
 # Mac vs non-Mac vim layer split
 
 `Home`/`End` keycodes work correctly in VS Code, terminals, and most IDEs. In macOS native text views (Safari, Mail, Notes, TextEdit), they scroll the document instead of moving the cursor.
