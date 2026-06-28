@@ -54,6 +54,7 @@
 #define LAYER_Magic 7
 #define VIM 8
 #define MAC_VIM 9
+#define MAC_SYM 10
 
 /* To deal with the situation where there is no Lower layer, to keep &lower happy */
 #ifndef LAYER_Lower
@@ -515,25 +516,25 @@
 
         layer_Mac_Qwerty {
             bindings = <
-//    ┌────────────────────────┬─────────────┬─────────────┬─────────────┬──────────────┐                                                                                                                 ┌──────────────┬─────────────┬─────────────┬─────────────┬────────────┐
-//    │           f1           │     f2      │     f3      │     f4      │      f5      │                                                                                                                 │      f6      │     f7      │     f8      │     f9      │    f10     │
-//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┐                                                                                     ┌─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
-//    │           =            │      1      │      2      │      3      │      4       │      5      │                                                                                     │      6      │      7       │      8      │      9      │      0      │ to GALLIUM │
-//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┤                                                                                     ├─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
-//    │         capsw          │      Q      │      W      │  lt NUM E   │ lt MAC_VIM R │      T      │                                                                                     │      Y      │ lt MAC_VIM U │  lt NUM I   │      O      │      P      │     \      │
-//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┤                                                                                     ├─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
-//    │          tab           │ &hml lalt A │ &hml lctl S │ &hml lsft D │   lt NAV F   │ &hml lgui G │                                                                                     │ &hmr rgui H │   lt NAV J   │ &hmr rsft K │ &hmr rctl L │ &hmr ralt ; │     '      │
-//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┤   ┌─────────────┬────────────┬─────────────┐   ┌──────┬────────────┬────────────┐   ├─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
-//    │          del           │      Z      │      X      │      C      │  lt FUNC V   │      B      │   │    lsft     │    lctl    │    lgui     │   │ rgui │    rctl    │    rsft    │   │      N      │      M       │      ,      │      .      │     tab     │            │
-//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┘   ├─────────────┼────────────┼─────────────┤   ├──────┼────────────┼────────────┤   └─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
-//    │ &magic laltYER_Magic 0 │             │             │             │              │                 │ lt SYM bspc │ lt NUM esc │ lt lalt del │   │ ralt │ lt NUM ent │ lt SYM spc │                 │     left     │    down     │     up      │    rght     │    pscr    │
-//    └────────────────────────┴─────────────┴─────────────┴─────────────┴──────────────┘                 └─────────────┴────────────┴─────────────┘   └──────┴────────────┴────────────┘                 └──────────────┴─────────────┴─────────────┴─────────────┴────────────┘
-  &kp F1                 &kp F2        &kp F3         &kp F4         &kp F5                                                                                                                                       &kp F6          &kp F7         &kp F8         &kp F9           &kp F10
-  &kp EQUAL              &kp N1        &kp N2         &kp N3         &kp N4          &kp N5                                                                                                         &kp N6        &kp N7          &kp N8         &kp N9         &kp N0           &to GALLIUM
-  &caps_word             &kp Q         &kp W          &lt NUM E      &lt MAC_VIM R   &kp T                                                                                                          &kp Y         &lt MAC_VIM U   &lt NUM I      &kp O          &kp P            &kp BSLH
-  &kp TAB                &hml LALT A   &hml LCTRL S   &hml LSHFT D   &lt NAV F       &hml LGUI G                                                                                                    &hmr RGUI H   &lt NAV J       &hmr RSHFT K   &hmr RCTRL L   &hmr RALT SEMI   &kp SQT
-  &kp DEL                &kp Z         &kp X          &kp C          &lt FUNC V      &kp B             &kp LSHFT      &kp LCTRL     &kp LGUI           &kp RGUI   &kp RCTRL     &kp RSHFT           &kp N         &kp M           &kp COMMA      &kp DOT        &kp TAB          &none
-  &magic LAYER_Magic 0   &none         &none          &none          &none                             &lt SYM BSPC   &lt NUM ESC   &lt LALT DEL       &kp RALT   &lt NUM RET   &lt SYM SPACE                     &kp LEFT        &kp DOWN       &kp UP         &kp RIGHT        &kp PSCRN
+//    ┌────────────────────────┬─────────────┬─────────────┬─────────────┬──────────────┐                                                                                                                         ┌──────────────┬─────────────┬─────────────┬─────────────┬────────────┐
+//    │           f1           │     f2      │     f3      │     f4      │      f5      │                                                                                                                         │      f6      │     f7      │     f8      │     f9      │    f10     │
+//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┐                                                                                             ┌─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
+//    │           =            │      1      │      2      │      3      │      4       │      5      │                                                                                             │      6      │      7       │      8      │      9      │      0      │ to GALLIUM │
+//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┤                                                                                             ├─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
+//    │         capsw          │      Q      │      W      │  lt NUM E   │ lt MAC_VIM R │      T      │                                                                                             │      Y      │ lt MAC_VIM U │  lt NUM I   │      O      │      P      │     \      │
+//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┤                                                                                             ├─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
+//    │          tab           │ &hml lalt A │ &hml lctl S │ &hml lsft D │   lt NAV F   │ &hml lgui G │                                                                                             │ &hmr rgui H │   lt NAV J   │ &hmr rsft K │ &hmr rctl L │ &hmr ralt ; │     '      │
+//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┤   ┌─────────────────┬────────────┬─────────────┐   ┌──────┬────────────┬────────────────┐   ├─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
+//    │          del           │      Z      │      X      │      C      │  lt FUNC V   │      B      │   │      lsft       │    lctl    │    lgui     │   │ rgui │    rctl    │      rsft      │   │      N      │      M       │      ,      │      .      │     tab     │            │
+//    ├────────────────────────┼─────────────┼─────────────┼─────────────┼──────────────┼─────────────┘   ├─────────────────┼────────────┼─────────────┤   ├──────┼────────────┼────────────────┤   └─────────────┼──────────────┼─────────────┼─────────────┼─────────────┼────────────┤
+//    │ &magic laltYER_Magic 0 │             │             │             │              │                 │ lt MAC_SYM bspc │ lt NUM esc │ lt lalt del │   │ ralt │ lt NUM ent │ lt MAC_SYM spc │                 │     left     │    down     │     up      │    rght     │    pscr    │
+//    └────────────────────────┴─────────────┴─────────────┴─────────────┴──────────────┘                 └─────────────────┴────────────┴─────────────┘   └──────┴────────────┴────────────────┘                 └──────────────┴─────────────┴─────────────┴─────────────┴────────────┘
+  &kp F1                 &kp F2        &kp F3         &kp F4         &kp F5                                                                                                                                               &kp F6          &kp F7         &kp F8         &kp F9           &kp F10
+  &kp EQUAL              &kp N1        &kp N2         &kp N3         &kp N4          &kp N5                                                                                                                 &kp N6        &kp N7          &kp N8         &kp N9         &kp N0           &to GALLIUM
+  &caps_word             &kp Q         &kp W          &lt NUM E      &lt MAC_VIM R   &kp T                                                                                                                  &kp Y         &lt MAC_VIM U   &lt NUM I      &kp O          &kp P            &kp BSLH
+  &kp TAB                &hml LALT A   &hml LCTRL S   &hml LSHFT D   &lt NAV F       &hml LGUI G                                                                                                            &hmr RGUI H   &lt NAV J       &hmr RSHFT K   &hmr RCTRL L   &hmr RALT SEMI   &kp SQT
+  &kp DEL                &kp Z         &kp X          &kp C          &lt FUNC V      &kp B             &kp LSHFT          &kp LCTRL     &kp LGUI           &kp RGUI   &kp RCTRL     &kp RSHFT               &kp N         &kp M           &kp COMMA      &kp DOT        &kp TAB          &none
+  &magic LAYER_Magic 0   &none         &none          &none          &none                             &lt MAC_SYM BSPC   &lt NUM ESC   &lt LALT DEL       &kp RALT   &lt NUM RET   &lt MAC_SYM SPACE                     &kp LEFT        &kp DOWN       &kp UP         &kp RIGHT        &kp PSCRN
             >;
         };
 
@@ -715,6 +716,30 @@
   &none   &vim_mac_caret   &vim_mac_s_ht 0 0   &vim_mac_dd   &vim_mac_dollar   &none                                                               &none   &none   &none   &none               &none   &none
   &none   &none            &none               &none         &none             &none       &none   &none   &none       &none   &none   &none       &none   &none   &none   &none               &none   &none
   &none   &none            &none               &none         &none                         &none   &none   &none       &none   &none   &none               &none   &none   &none               &none   &none
+            >;
+        };
+
+        layer_Mac_Symbol {
+            bindings = <
+//    ┌──────┬─────────────┬─────────────┬─────────────┬──────┐                                                                            ┌─────┬─────────────┬─────────────┬─────────────┬─────┐
+//    │ bri- │    bri+     │    prev     │    next     │ play │                                                                            │     │             │             │             │     │
+//    ├──────┼─────────────┼─────────────┼─────────────┼──────┼─────────────┐                                                ┌─────────────┼─────┼─────────────┼─────────────┼─────────────┼─────┤
+//    │      │             │             │             │      │             │                                                │             │     │             │             │             │     │
+//    ├──────┼─────────────┼─────────────┼─────────────┼──────┼─────────────┤                                                ├─────────────┼─────┼─────────────┼─────────────┼─────────────┼─────┤
+//    │      │    iso#     │      !      │      `      │  %   │      ?      │                                                │      &      │  +  │      {      │      }      │      "      │     │
+//    ├──────┼─────────────┼─────────────┼─────────────┼──────┼─────────────┤                                                ├─────────────┼─────┼─────────────┼─────────────┼─────────────┼─────┤
+//    │      │ &hml lalt ^ │ &hml lctl = │ &hml lsft _ │  $   │ &hml lgui * │                                                │ &hmr rgui ~ │  -  │ &hmr rsft ( │ &hmr rctl ) │ &hmr ralt ' │     │
+//    ├──────┼─────────────┼─────────────┼─────────────┼──────┼─────────────┤   ┌─────┬──────┬─────┐   ┌─────┬─────┬─────┐   ├─────────────┼─────┼─────────────┼─────────────┼─────────────┼─────┤
+//    │      │      <      │      |      │      -      │  >   │             │   │     │ iso\ │     │   │     │     │     │   │      @      │  ;  │      [      │      ]      │    iso#     │     │
+//    ├──────┼─────────────┼─────────────┼─────────────┼──────┼─────────────┘   ├─────┼──────┼─────┤   ├─────┼─────┼─────┤   └─────────────┼─────┼─────────────┼─────────────┼─────────────┼─────┤
+//    │      │             │             │             │      │                 │  /  │  \   │     │   │     │ spc │  :  │                 │     │             │             │             │     │
+//    └──────┴─────────────┴─────────────┴─────────────┴──────┘                 └─────┴──────┴─────┘   └─────┴─────┴─────┘                 └─────┴─────────────┴─────────────┴─────────────┴─────┘
+  &kp C_BRI_DN   &kp C_BRI_UP      &kp C_PREV         &kp C_NEXT          &kp C_PP                                                                                                                   &none       &none             &none             &none           &none
+  &none          &none             &none              &none               &none         &none                                                                                      &none             &none       &none             &none             &none           &none
+  &none          &kp NUHS          &kp EXCLAMATION    &kp GRAVE           &kp PERCENT   &kp QMARK                                                                                  &kp AMPS          &kp PLUS    &kp LBRC          &kp RBRC          &kp DQT         &none
+  &none          &hml LALT CARET   &hml LCTRL EQUAL   &hml LSHIFT UNDER   &kp DOLLAR    &hml LGUI STAR                                                                             &hmr RGUI TILDE   &kp MINUS   &hmr RSHFT LPAR   &hmr RCTRL RPAR   &hmr RALT SQT   &none
+  &none          &kp LT            &kp PIPE           &kp MINUS           &kp GT        &none                &none      &kp NUBS   &none       &none   &none       &none           &kp AT            &kp SEMI    &kp LBKT          &kp RBKT          &kp NUHS        &none
+  &none          &none             &none              &none               &none                              &kp FSLH   &kp BSLH   &none       &none   &kp SPACE   &kp COLON                         &none       &none             &none             &none           &none
             >;
         };
 
