@@ -26,7 +26,7 @@ Row 1 is the most commonly missed — it needs 10 keys, not 5.
 
 ZMK checks layers from highest number to lowest. Base layers (QWERT, GALLIUM, MAC_QWERT) must have lower numbers than all overlay layers (SYM, NUM, NAV, FUNC, Magic, EDIT, MAC_EDIT), otherwise the base layer's explicit bindings shadow the overlay layer and make its keys unreachable.
 
-Current order: QWERT=0, GALLIUM=1, MAC_QWERT=2, SYM=3, NUM=4, NAV=5, FUNC=6, Magic=7, EDIT=8, MAC_EDIT=9, MAC_SYM=10.
+Current order: QWERT=0, GALLIUM=1, MAC_QWERT=2, SYM=3, NUM=4, NAV=5, FUNC=6, Magic=7, EDIT=8, MAC_SYM=9, MAC_NAV=10.
 
 Any new base layer must be inserted before SYM (currently 3). Any new overlay layer can be appended at the end. The layer order in the keymap block must match the `#define` values.
 
