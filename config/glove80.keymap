@@ -385,6 +385,21 @@
             #binding-cells = <0>;
             bindings = <&kp HOME &kp LS(END)>;
         };
+        vim_yy: vim_yy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp HOME &kp LS(END) &kp LC(C)>;
+        };
+        vim_p_below: vim_p_below {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp END &kp RET &kp LC(V)>;
+        };
+        vim_p_above: vim_p_above {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp HOME &kp RET &kp UP &kp LC(V)>;
+        };
     };
     behaviors {
         vim_d_td: vim_d_td {
@@ -405,6 +420,13 @@
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             bindings = <&vim_above>, <&vim_o>;
+        };
+        vim_p_ht: vim_p_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&vim_p_above>, <&vim_p_below>;
         };
     };
 };
@@ -452,6 +474,21 @@
             #binding-cells = <0>;
             bindings = <&kp LG(LEFT) &kp LS(LG(RIGHT))>;
         };
+        vim_mac_yy: vim_mac_yy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LEFT) &kp LS(LG(RIGHT)) &kp LG(C)>;
+        };
+        vim_mac_p_below: vim_mac_p_below {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(RIGHT) &kp RET &kp LG(V)>;
+        };
+        vim_mac_p_above: vim_mac_p_above {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LEFT) &kp RET &kp UP &kp LG(V)>;
+        };
     };
     behaviors {
         vim_mac_d_td: vim_mac_d_td {
@@ -472,6 +509,13 @@
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             bindings = <&vim_mac_above>, <&vim_mac_o>;
+        };
+        vim_mac_p_ht: vim_mac_p_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&vim_mac_p_above>, <&vim_mac_p_below>;
         };
     };
 };
@@ -693,49 +737,49 @@
 
         layer_Vim {
             bindings = <
-//    ┌─────┬────────────┬───────────┬───────────┬─────────────┐                                                           ┌─────┬─────┬───────────────┬─────┬─────┐
-//    │     │            │           │           │             │                                                           │     │     │               │     │     │
-//    ├─────┼────────────┼───────────┼───────────┼─────────────┼─────┐                                               ┌─────┼─────┼─────┼───────────────┼─────┼─────┤
-//    │     │            │           │           │             │     │                                               │     │     │     │               │     │     │
-//    ├─────┼────────────┼───────────┼───────────┼─────────────┼─────┤                                               ├─────┼─────┼─────┼───────────────┼─────┼─────┤
-//    │     │            │           │           │             │     │                                               │     │     │     │ &vim_o_ht 0 0 │     │     │
-//    ├─────┼────────────┼───────────┼───────────┼─────────────┼─────┤                                               ├─────┼─────┼─────┼───────────────┼─────┼─────┤
-//    │     │ &vim_caret │ &vim_s_td │ &vim_d_td │ &vim_dollar │     │                                               │     │     │     │               │     │     │
-//    ├─────┼────────────┼───────────┼───────────┼─────────────┼─────┤   ┌─────┬─────┬─────┐   ┌─────┬─────┬─────┐   ├─────┼─────┼─────┼───────────────┼─────┼─────┤
-//    │     │            │           │           │             │     │   │     │     │     │   │     │     │     │   │     │     │     │               │     │     │
-//    ├─────┼────────────┼───────────┼───────────┼─────────────┼─────┘   ├─────┼─────┼─────┤   ├─────┼─────┼─────┤   └─────┼─────┼─────┼───────────────┼─────┼─────┤
-//    │     │            │           │           │             │         │     │     │     │   │     │     │     │         │     │     │               │     │     │
-//    └─────┴────────────┴───────────┴───────────┴─────────────┘         └─────┴─────┴─────┘   └─────┴─────┴─────┘         └─────┴─────┴───────────────┴─────┴─────┘
-  &none   &none        &none       &none       &none                                                                                     &none   &none   &none           &none   &none
-  &none   &none        &none       &none       &none         &none                                                               &none   &none   &none   &none           &none   &none
-  &none   &none        &none       &none       &none         &none                                                               &none   &none   &none   &vim_o_ht 0 0   &none   &none
-  &none   &vim_caret   &vim_s_td   &vim_d_td   &vim_dollar   &none                                                               &none   &none   &none   &none           &none   &none
-  &none   &none        &none       &none       &vim_v         &none       &none   &none   &none       &none   &none   &none       &none   &none   &none   &none           &none   &none
-  &none   &none        &none       &none       &none                     &none   &none   &none       &none   &none   &none               &none   &none   &none           &none   &none
+//    ┌─────┬────────────┬───────────┬───────────┬─────────────┐                                                               ┌─────┬─────┬───────────────┬───────────────┬─────┐
+//    │     │            │           │           │             │                                                               │     │     │               │               │     │
+//    ├─────┼────────────┼───────────┼───────────┼─────────────┼─────┐                                               ┌─────────┼─────┼─────┼───────────────┼───────────────┼─────┤
+//    │     │            │           │           │             │     │                                               │         │     │     │               │               │     │
+//    ├─────┼────────────┼───────────┼───────────┼─────────────┼─────┤                                               ├─────────┼─────┼─────┼───────────────┼───────────────┼─────┤
+//    │     │            │           │           │             │     │                                               │ &vim_yy │     │     │ &vim_o_ht 0 0 │ &vim_p_ht 0 0 │     │
+//    ├─────┼────────────┼───────────┼───────────┼─────────────┼─────┤                                               ├─────────┼─────┼─────┼───────────────┼───────────────┼─────┤
+//    │     │ &vim_caret │ &vim_s_td │ &vim_d_td │ &vim_dollar │     │                                               │         │     │     │               │               │     │
+//    ├─────┼────────────┼───────────┼───────────┼─────────────┼─────┤   ┌─────┬─────┬─────┐   ┌─────┬─────┬─────┐   ├─────────┼─────┼─────┼───────────────┼───────────────┼─────┤
+//    │     │            │           │           │   &vim_v    │     │   │     │     │     │   │     │     │     │   │         │     │     │               │               │     │
+//    ├─────┼────────────┼───────────┼───────────┼─────────────┼─────┘   ├─────┼─────┼─────┤   ├─────┼─────┼─────┤   └─────────┼─────┼─────┼───────────────┼───────────────┼─────┤
+//    │     │            │           │           │             │         │     │     │     │   │     │     │     │             │     │     │               │               │     │
+//    └─────┴────────────┴───────────┴───────────┴─────────────┘         └─────┴─────┴─────┘   └─────┴─────┴─────┘             └─────┴─────┴───────────────┴───────────────┴─────┘
+  &none   &none        &none       &none       &none                                                                                       &none   &none   &none           &none           &none
+  &none   &none        &none       &none       &none         &none                                                               &none     &none   &none   &none           &none           &none
+  &none   &none        &none       &none       &none         &none                                                               &vim_yy   &none   &none   &vim_o_ht 0 0   &vim_p_ht 0 0   &none
+  &none   &vim_caret   &vim_s_td   &vim_d_td   &vim_dollar   &none                                                               &none     &none   &none   &none           &none           &none
+  &none   &none        &none       &none       &vim_v        &none       &none   &none   &none       &none   &none   &none       &none     &none   &none   &none           &none           &none
+  &none   &none        &none       &none       &none                     &none   &none   &none       &none   &none   &none                 &none   &none   &none           &none           &none
             >;
         };
 
         layer_Mac_Vim {
             bindings = <
-//    ┌─────┬────────────────┬───────────────┬───────────────┬─────────────────┐                                                           ┌─────┬─────┬───────────────────┬─────┬─────┐
-//    │     │                │               │               │                 │                                                           │     │     │                   │     │     │
-//    ├─────┼────────────────┼───────────────┼───────────────┼─────────────────┼─────┐                                               ┌─────┼─────┼─────┼───────────────────┼─────┼─────┤
-//    │     │                │               │               │                 │     │                                               │     │     │     │                   │     │     │
-//    ├─────┼────────────────┼───────────────┼───────────────┼─────────────────┼─────┤                                               ├─────┼─────┼─────┼───────────────────┼─────┼─────┤
-//    │     │                │               │               │                 │     │                                               │     │     │     │ &vim_mac_o_ht 0 0 │     │     │
-//    ├─────┼────────────────┼───────────────┼───────────────┼─────────────────┼─────┤                                               ├─────┼─────┼─────┼───────────────────┼─────┼─────┤
-//    │     │ &vim_mac_caret │ &vim_mac_s_td │ &vim_mac_d_td │ &vim_mac_dollar │     │                                               │     │     │     │                   │     │     │
-//    ├─────┼────────────────┼───────────────┼───────────────┼─────────────────┼─────┤   ┌─────┬─────┬─────┐   ┌─────┬─────┬─────┐   ├─────┼─────┼─────┼───────────────────┼─────┼─────┤
-//    │     │                │               │               │                 │     │   │     │     │     │   │     │     │     │   │     │     │     │                   │     │     │
-//    ├─────┼────────────────┼───────────────┼───────────────┼─────────────────┼─────┘   ├─────┼─────┼─────┤   ├─────┼─────┼─────┤   └─────┼─────┼─────┼───────────────────┼─────┼─────┤
-//    │     │                │               │               │                 │         │     │     │     │   │     │     │     │         │     │     │                   │     │     │
-//    └─────┴────────────────┴───────────────┴───────────────┴─────────────────┘         └─────┴─────┴─────┘   └─────┴─────┴─────┘         └─────┴─────┴───────────────────┴─────┴─────┘
-  &none   &none            &none           &none           &none                                                                                         &none   &none   &none               &none   &none
-  &none   &none            &none           &none           &none             &none                                                               &none   &none   &none   &none               &none   &none
-  &none   &none            &none           &none           &none             &none                                                               &none   &none   &none   &vim_mac_o_ht 0 0   &none   &none
-  &none   &vim_mac_caret   &vim_mac_s_td   &vim_mac_d_td   &vim_mac_dollar   &none                                                               &none   &none   &none   &none               &none   &none
-  &none   &none            &none           &none           &vim_mac_v             &none       &none   &none   &none       &none   &none   &none       &none   &none   &none   &none               &none   &none
-  &none   &none            &none           &none           &none                         &none   &none   &none       &none   &none   &none               &none   &none   &none               &none   &none
+//    ┌─────┬────────────────┬───────────────┬───────────────┬─────────────────┐                                                                   ┌─────┬─────┬───────────────────┬───────────────────┬─────┐
+//    │     │                │               │               │                 │                                                                   │     │     │                   │                   │     │
+//    ├─────┼────────────────┼───────────────┼───────────────┼─────────────────┼─────┐                                               ┌─────────────┼─────┼─────┼───────────────────┼───────────────────┼─────┤
+//    │     │                │               │               │                 │     │                                               │             │     │     │                   │                   │     │
+//    ├─────┼────────────────┼───────────────┼───────────────┼─────────────────┼─────┤                                               ├─────────────┼─────┼─────┼───────────────────┼───────────────────┼─────┤
+//    │     │                │               │               │                 │     │                                               │ &vim_mac_yy │     │     │ &vim_mac_o_ht 0 0 │ &vim_mac_p_ht 0 0 │     │
+//    ├─────┼────────────────┼───────────────┼───────────────┼─────────────────┼─────┤                                               ├─────────────┼─────┼─────┼───────────────────┼───────────────────┼─────┤
+//    │     │ &vim_mac_caret │ &vim_mac_s_td │ &vim_mac_d_td │ &vim_mac_dollar │     │                                               │             │     │     │                   │                   │     │
+//    ├─────┼────────────────┼───────────────┼───────────────┼─────────────────┼─────┤   ┌─────┬─────┬─────┐   ┌─────┬─────┬─────┐   ├─────────────┼─────┼─────┼───────────────────┼───────────────────┼─────┤
+//    │     │                │               │               │   &vim_mac_v    │     │   │     │     │     │   │     │     │     │   │             │     │     │                   │                   │     │
+//    ├─────┼────────────────┼───────────────┼───────────────┼─────────────────┼─────┘   ├─────┼─────┼─────┤   ├─────┼─────┼─────┤   └─────────────┼─────┼─────┼───────────────────┼───────────────────┼─────┤
+//    │     │                │               │               │                 │         │     │     │     │   │     │     │     │                 │     │     │                   │                   │     │
+//    └─────┴────────────────┴───────────────┴───────────────┴─────────────────┘         └─────┴─────┴─────┘   └─────┴─────┴─────┘                 └─────┴─────┴───────────────────┴───────────────────┴─────┘
+  &none   &none            &none           &none           &none                                                                                               &none   &none   &none               &none               &none
+  &none   &none            &none           &none           &none             &none                                                               &none         &none   &none   &none               &none               &none
+  &none   &none            &none           &none           &none             &none                                                               &vim_mac_yy   &none   &none   &vim_mac_o_ht 0 0   &vim_mac_p_ht 0 0   &none
+  &none   &vim_mac_caret   &vim_mac_s_td   &vim_mac_d_td   &vim_mac_dollar   &none                                                               &none         &none   &none   &none               &none               &none
+  &none   &none            &none           &none           &vim_mac_v        &none       &none   &none   &none       &none   &none   &none       &none         &none   &none   &none               &none               &none
+  &none   &none            &none           &none           &none                         &none   &none   &none       &none   &none   &none                     &none   &none   &none               &none               &none
             >;
         };
 
